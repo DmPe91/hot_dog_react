@@ -8,7 +8,7 @@ import EmptyCart from "./pages/EmptyCart";
 import Cart from "./pages/Cart";
 function App() {
   return (
-    <div class="wrapper">
+    <div className="wrapper">
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />

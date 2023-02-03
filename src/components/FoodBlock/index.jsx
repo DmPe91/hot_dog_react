@@ -1,9 +1,20 @@
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { addProduct } from "../../redux/slices/cartSlice";
 
 function FoodBlock(props) {
   const [foodCount, setCount] = React.useState(0);
   const [sizeFood, setSize] = React.useState(0);
+  const dispatch = useDispatch();
   const typeSize = ["джуниор", "стандарт"];
+  const onAdd = () => {
+    const item = {
+      ...props,
+    };
+    setCount(foodCount + 1);
+    dispatch(addProduct(item));
+    console.log(item);
+  };
   return (
     <div className="food_block">
       <div className="container_image">
@@ -35,9 +46,9 @@ function FoodBlock(props) {
         <div>
           <p>{props.price} ₽</p>
         </div>
-        <button onClick={() => setCount(foodCount + 1)}>
+        <button onClick={onAdd}>
           Добавить
-          <span>{foodCount}</span>
+          <span>{foodCount > 0 ? foodCount : ""}</span>
         </button>
       </div>
     </div>

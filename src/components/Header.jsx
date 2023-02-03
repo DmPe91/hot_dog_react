@@ -1,7 +1,9 @@
 import "../style.scss";
 
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 function Header() {
+  const { items, totalPrice } = useSelector((state) => state.cartSlice);
   return (
     <div className="header">
       <div className="header_logo">
@@ -17,8 +19,9 @@ function Header() {
       </div>
       <div className="header_cart">
         <Link to="/cart" className="button button--cart">
-          <span>520 ₽</span>
+          <span>{totalPrice} ₽</span>
           <i className="fa fa-shopping-cart" aria-hidden="true"></i>
+          <span>{items.length}</span>
         </Link>
       </div>
     </div>
