@@ -1,9 +1,11 @@
 import "../style.scss";
 
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
 function Header() {
   const { items, totalPrice } = useSelector((state) => state.cartSlice);
+  const totalCount = items.reduce((sum, item) => sum + item.count, 0);
+  const location = useLocation();
   return (
     <div className="header">
       <div className="header_logo">
@@ -17,13 +19,15 @@ function Header() {
           <p>Лучшие хот доги и шаурма</p>
         </div>
       </div>
-      <div className="header_cart">
-        <Link to="/cart" className="button button--cart">
-          <span>{totalPrice} ₽</span>
-          <i className="fa fa-shopping-cart" aria-hidden="true"></i>
-          <span>{items.length}</span>
-        </Link>
-      </div>
+      {location.pathname !== "/cart" && (
+        <div className="header_cart">
+          <Link to="/cart" className="button button--cart">
+            <span>{totalPrice} ₽</span>
+            <i className="fa fa-shopping-cart" aria-hidden="true"></i>
+            <span>{totalCount}</span>
+          </Link>
+        </div>
+      )}
     </div>
   );
 }

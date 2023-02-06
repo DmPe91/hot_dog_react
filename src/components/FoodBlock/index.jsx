@@ -10,10 +10,11 @@ function FoodBlock(props) {
   const onAdd = () => {
     const item = {
       ...props,
+      count: 0,
+      type: typeSize[sizeFood],
     };
     setCount(foodCount + 1);
     dispatch(addProduct(item));
-    console.log(item);
   };
   return (
     <div className="food_block">

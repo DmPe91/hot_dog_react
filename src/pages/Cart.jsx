@@ -1,6 +1,6 @@
 import React from "react";
-
+import CartBlock from "../components/CartBlock";
 const Cart = () => {
-  return <h1>Корзина</h1>;
+  return <CartBlock />;
 };
 export default Cart;
