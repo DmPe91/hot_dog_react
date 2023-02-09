@@ -1,6 +1,6 @@
 import React from "react";
 import EmptyCartBlock from "../components/EmptyCartBlock";
-const EmptyCart = () => {
+const EmptyCart: React.FC = () => {
   return <EmptyCartBlock />;
 };
 export default EmptyCart;

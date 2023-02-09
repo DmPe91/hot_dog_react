@@ -1,24 +1,31 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { setSearch } from "../redux/slices/filterSlice";
-export const arr = [
+
+type SortArr = {
+  name: string;
+  sortSearch: string;
+};
+export const arr: SortArr[] = [
   { name: "популярности", sortSearch: "rating" },
   { name: "алфавиту", sortSearch: "name" },
   { name: "цене", sortSearch: "price" },
 ];
 function Search() {
   const disptach = useDispatch();
-  const sort = useSelector((state) => state.categorySlice.sort);
+  const sort = useSelector((state: any) => state.categorySlice.sort);
   const [isVisible, setVisible] = React.useState(false);
-  const sortRef = React.useRef();
-  const onSelect = (obj) => {
+  const sortRef = React.useRef<HTMLDivElement>(null);
+  const onSelect = (obj: SortArr) => {
     disptach(setSearch(obj));
     setVisible(false);
   };
   React.useEffect(() => {
-    const handleClickOutside = (event) => {
-      let path = event.composedPath().includes(sortRef.current);
-      if (!path) {
+    const handleClickOutside = (event: MouseEvent) => {
+      const _event = event as MouseEvent & {
+        path: Node[];
+      };
+      if (sortRef.current && !_event.composedPath().includes(sortRef.current)) {
         setVisible(false);
       }
     };

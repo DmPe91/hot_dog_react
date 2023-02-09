@@ -10,16 +10,19 @@ import Search, { arr } from "../components/Search";
 import FoodBlock from "../components/FoodBlock";
 import Skeleton from "../components/FoodBlock/Skeleton";
 
-const Home = () => {
+const Home: React.FC = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const isMounted = React.useRef(false);
-  const { items, status } = useSelector((state) => state.foodSlice);
-  const category = useSelector((state) => state.categorySlice.category);
-  const selected = useSelector((state) => state.categorySlice.sort.sortSearch);
+  const { items, status } = useSelector((state: any) => state.foodSlice);
+  const category = useSelector((state: any) => state.categorySlice.category);
+  const selected = useSelector(
+    (state: any) => state.categorySlice.sort.sortSearch
+  );
 
   const getFood = async () => {
     dispatch(
+      //@ts-ignore
       fetchFood({
         category,
         selected,
@@ -29,7 +32,7 @@ const Home = () => {
 
     window.scrollTo(0, 0);
   };
-  const onChangeCategory = (i) => {
+  const onChangeCategory = (i: number) => {
     dispatch(setCategory(i));
   };
   React.useEffect(() => {
@@ -59,7 +62,7 @@ const Home = () => {
       <div className="menu">
         <Categories
           active={category}
-          onClickCategory={(i) => onChangeCategory(i)}
+          onClickCategory={(i: number) => onChangeCategory(i)}
         />
         <Search />
       </div>
@@ -71,7 +74,7 @@ const Home = () => {
             {" "}
             {status == "LOADING"
               ? [...new Array(38)].map((_, index) => <Skeleton key={index} />)
-              : items.map((value) => (
+              : items.map((value: any) => (
                   <FoodBlock key={value.name} {...value} />
                 ))}{" "}
           </div>

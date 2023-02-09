@@ -10,21 +10,21 @@ import EmptyCartBlock from "../EmptyCartBlock";
 import style from "./Cart.module.scss";
 const CartBlock = () => {
   const dispatch = useDispatch();
-  const { items, totalPrice } = useSelector((state) => state.cartSlice);
-  const onClickPlus = (item) => {
+  const { items, totalPrice } = useSelector((state: any) => state.cartSlice);
+  const onClickPlus = (item: any) => {
     dispatch(addProduct(item));
   };
-  const onClickMinus = (item) => {
+  const onClickMinus = (item: any) => {
     dispatch(minusProduct(item));
   };
-  const onClickRemove = (item) => {
+  const onClickRemove = (item: any) => {
     if (window.confirm("Ты хочешь удалить выбранный продукт?")) {
       dispatch(removeProduct(item));
     }
   };
   const onClickClear = () => {
     if (window.confirm("Удалить все выбранные продукты?")) {
-      dispatch(clearProduct());
+      dispatch(clearProduct(""));
     }
   };
   if (!totalPrice) {
@@ -38,7 +38,7 @@ const CartBlock = () => {
         <span onClick={onClickClear}>очистить корзину</span>
       </div>
       <div className={style.itemBlock}>
-        {items.map((item) => (
+        {items.map((item: any) => (
           <div className={style.itemCart}>
             <img src={item.img} />
             <div className={style.itemName}>

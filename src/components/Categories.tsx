@@ -1,5 +1,9 @@
 import React from "react";
-function Categories(props) {
+type CategoryProps = {
+  active: number;
+  onClickCategory: (i: number) => void;
+};
+const Categories: React.FC<CategoryProps> = ({ onClickCategory, active }) => {
   const categories = [
     "все",
     "хот доги",
@@ -16,8 +20,8 @@ function Categories(props) {
           {categories.map((value, index) => (
             <li
               key={value}
-              onClick={() => props.onClickCategory(index)}
-              className={props.active === index ? "active" : ""}
+              onClick={() => onClickCategory(index)}
+              className={active === index ? "active" : ""}
             >
               {value}
             </li>
@@ -26,5 +30,5 @@ function Categories(props) {
       </nav>
     </div>
   );
-}
+};
 export default Categories;
