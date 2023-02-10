@@ -5,26 +5,30 @@ import {
   minusProduct,
   removeProduct,
   clearProduct,
+  CartItem,
 } from "../../redux/slices/cartSlice";
+import { RootState } from "../../redux/store";
 import EmptyCartBlock from "../EmptyCartBlock";
 import style from "./Cart.module.scss";
 const CartBlock = () => {
   const dispatch = useDispatch();
-  const { items, totalPrice } = useSelector((state: any) => state.cartSlice);
-  const onClickPlus = (item: any) => {
+  const { items, totalPrice } = useSelector(
+    (state: RootState) => state.cartSlice
+  );
+  const onClickPlus = (item: CartItem) => {
     dispatch(addProduct(item));
   };
-  const onClickMinus = (item: any) => {
+  const onClickMinus = (item: CartItem) => {
     dispatch(minusProduct(item));
   };
-  const onClickRemove = (item: any) => {
+  const onClickRemove = (item: CartItem) => {
     if (window.confirm("Ты хочешь удалить выбранный продукт?")) {
       dispatch(removeProduct(item));
     }
   };
   const onClickClear = () => {
     if (window.confirm("Удалить все выбранные продукты?")) {
-      dispatch(clearProduct(""));
+      dispatch(clearProduct());
     }
   };
   if (!totalPrice) {
@@ -46,7 +50,12 @@ const CartBlock = () => {
               <span>{item.type}</span>
             </div>
             <div className={style.itemCount}>
-              <button onClick={() => onClickMinus(item)}>-</button>
+              <button
+                onClick={() => onClickMinus(item)}
+                disabled={item.count === 1}
+              >
+                -
+              </button>
               <span>{item.count}</span>
               <button onClick={() => onClickPlus(item)}>+</button>
             </div>

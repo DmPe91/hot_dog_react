@@ -1,11 +1,12 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addProduct } from "../../redux/slices/cartSlice";
+import { addProduct, CartItem } from "../../redux/slices/cartSlice";
+import { Food } from "../../redux/slices/foodSlice";
 
 type FoodProps = {
   img: string;
   name: string;
-  price: number | string;
+  price: number;
   rating: number;
   size: number[];
   text: string;
@@ -23,7 +24,7 @@ const FoodBlock: React.FC<FoodProps> = ({
   const dispatch = useDispatch();
   const typeSize = ["джуниор", "стандарт"];
   const onAdd = () => {
-    const item = {
+    const item: Food = {
       img,
       name,
       text,

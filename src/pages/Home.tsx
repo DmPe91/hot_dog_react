@@ -1,32 +1,34 @@
 import React from "react";
-import axios from "axios";
 import qs from "qs";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { setCategory, setFilters } from "../redux/slices/filterSlice";
+import { FilterSliceState } from "../redux/slices/filterSlice";
 import { fetchFood } from "../redux/slices/foodSlice";
 import { useNavigate } from "react-router-dom";
 import Categories from "../components/Categories";
 import Search, { arr } from "../components/Search";
 import FoodBlock from "../components/FoodBlock";
 import Skeleton from "../components/FoodBlock/Skeleton";
+import { RootState, useAppDispatch } from "../redux/store";
 
 const Home: React.FC = () => {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const isMounted = React.useRef(false);
-  const { items, status } = useSelector((state: any) => state.foodSlice);
-  const category = useSelector((state: any) => state.categorySlice.category);
-  const selected = useSelector(
-    (state: any) => state.categorySlice.sort.sortSearch
+  const { items, status } = useSelector((state: RootState) => state.foodSlice);
+  const category = useSelector(
+    (state: RootState) => state.categorySlice.category
   );
+  const selected = useSelector(
+    (state: RootState) => state.categorySlice.sort.sortSearch
+  );
+  ///const sort = useSelector((state: RootState) => state.categorySlice.sort);
 
   const getFood = async () => {
     dispatch(
-      //@ts-ignore
       fetchFood({
         category,
         selected,
-        axios,
       })
     );
 
@@ -39,7 +41,11 @@ const Home: React.FC = () => {
     if (window.location.search) {
       const select = qs.parse(window.location.search.substring(1));
       const sort = arr.find((obj) => obj.sortSearch === select.selected);
-      dispatch(setFilters({ ...select, sort }));
+      const params = {
+        select,
+        sort,
+      };
+      dispatch(setFilters({ ...params } as unknown as FilterSliceState));
     }
   }, []);
 

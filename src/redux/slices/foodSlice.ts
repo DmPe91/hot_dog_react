@@ -1,10 +1,16 @@
+import axios from "axios";
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
-export const fetchFood = createAsyncThunk(
+type FetchFoodArgs = {
+  category: number;
+  selected: string;
+};
+
+export const fetchFood = createAsyncThunk<Food[], FetchFoodArgs>(
   "food/fetchFoodStatus",
-  async (params, thunkAPI) => {
-    const { category, selected, axios } = params;
-    const { data } = await axios.get(
+  async (params) => {
+    const { category, selected } = params;
+    const { data } = await axios.get<Food[]>(
       `https://63d2a7e61780fd6ab9ca3aed.mockapi.io/items?${
         category > 0 ? `category=${category}` : ""
       }&sortBy=${selected}&order=desc`
@@ -13,8 +19,23 @@ export const fetchFood = createAsyncThunk(
     return data;
   }
 );
+export type Food = {
+  img: string;
+  name: string;
+  price: number;
+  rating: number;
+  size: number[];
+  text: string;
+  count: number;
+  type: string;
+};
 
-const initialState = {
+interface FoodSliceState {
+  items: Food[];
+  status: "LOADING" | "ERROR" | "SUCCESS";
+}
+
+const initialState: FoodSliceState = {
   items: [],
   status: "LOADING",
 };

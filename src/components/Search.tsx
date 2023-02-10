@@ -1,10 +1,11 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { setSearch } from "../redux/slices/filterSlice";
+import { Filter, setSearch } from "../redux/slices/filterSlice";
+import { RootState } from "../redux/store";
 
 type SortArr = {
   name: string;
-  sortSearch: string;
+  sortSearch: "rating" | "name" | "price";
 };
 export const arr: SortArr[] = [
   { name: "популярности", sortSearch: "rating" },
@@ -13,7 +14,7 @@ export const arr: SortArr[] = [
 ];
 function Search() {
   const disptach = useDispatch();
-  const sort = useSelector((state: any) => state.categorySlice.sort);
+  const sort = useSelector((state: RootState) => state.categorySlice.sort);
   const [isVisible, setVisible] = React.useState(false);
   const sortRef = React.useRef<HTMLDivElement>(null);
   const onSelect = (obj: SortArr) => {
