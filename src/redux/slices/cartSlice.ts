@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { getCartFromLocalS } from "../../utils/getCartFromLocalS";
 
 export type CartItem = {
   img: string;
@@ -16,10 +17,7 @@ interface CartSliceState {
   items: CartItem[];
 }
 
-const initialState: CartSliceState = {
-  totalPrice: 0,
-  items: [],
-};
+const initialState: CartSliceState = getCartFromLocalS();
 
 export const cartSlice = createSlice({
   name: "cart",

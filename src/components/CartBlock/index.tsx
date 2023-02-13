@@ -8,6 +8,7 @@ import {
   CartItem,
 } from "../../redux/slices/cartSlice";
 import { RootState } from "../../redux/store";
+import { calcTotalCounts } from "../../utils/calcTotalCount";
 import EmptyCartBlock from "../EmptyCartBlock";
 import style from "./Cart.module.scss";
 const CartBlock = () => {
@@ -34,7 +35,7 @@ const CartBlock = () => {
   if (!totalPrice) {
     return <EmptyCartBlock />;
   }
-
+  console.log(items);
   return (
     <div className={style.cart}>
       <div className={style.cart_head}>
@@ -71,7 +72,7 @@ const CartBlock = () => {
       <div className={style.info_product}>
         <div>
           <p>
-            Всего заказано <span>{items.length} шт</span>
+            Всего заказано <span>{calcTotalCounts(items)} шт</span>
           </p>
         </div>
         <div>
