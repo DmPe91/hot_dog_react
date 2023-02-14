@@ -11,9 +11,7 @@ export const fetchFood = createAsyncThunk<Food[], FetchFoodArgs>(
   async (params) => {
     const { category, selected } = params;
     const { data } = await axios.get<Food[]>(
-      `https://63d2a7e61780fd6ab9ca3aed.mockapi.io/items?${
-        category > 0 ? `category=${category}` : ""
-      }&sortBy=${selected}&order=desc`
+      `https://63d2a7e61780fd6ab9ca3aed.mockapi.io/items?${`category=${category}`}&sortBy=${selected}&order=desc`
     );
 
     return data;

@@ -5,7 +5,6 @@ type CategoryProps = {
 };
 const Categories: React.FC<CategoryProps> = ({ onClickCategory, active }) => {
   const categories = [
-    "все",
     "хот доги",
     "шаурма",
     "shau box",

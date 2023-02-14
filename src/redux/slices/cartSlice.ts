@@ -42,10 +42,14 @@ export const cartSlice = createSlice({
       );
       if (findProduct) {
         findProduct.count--;
+        state.totalPrice = state.totalPrice - findProduct.price;
       }
+      console.log(findProduct);
     },
     removeProduct(state, action: PayloadAction<CartItem>) {
       state.items = state.items.filter((obj) => obj.img !== action.payload.img);
+      state.totalPrice =
+        state.totalPrice - action.payload.price * action.payload.count;
     },
     clearProduct(state) {
       state.items = [];

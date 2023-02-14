@@ -10,6 +10,7 @@ import Search, { arr } from "../components/Search";
 import FoodBlock from "../components/FoodBlock";
 import Skeleton from "../components/FoodBlock/Skeleton";
 import { RootState, useAppDispatch } from "../redux/store";
+import QueryString from "qs";
 
 const Home: React.FC = () => {
   const navigate = useNavigate();
@@ -19,6 +20,7 @@ const Home: React.FC = () => {
   const category = useSelector(
     (state: RootState) => state.categorySlice.category
   );
+
   const selected = useSelector(
     (state: RootState) => state.categorySlice.sort.sortSearch
   );
@@ -39,10 +41,10 @@ const Home: React.FC = () => {
   };
   React.useEffect(() => {
     if (window.location.search) {
-      const select = qs.parse(window.location.search.substring(1));
-      const sort = arr.find((obj) => obj.sortSearch === select.selected);
+      const category = qs.parse(window.location.search.substring(1));
+      const sort = arr.find((obj) => obj.sortSearch === category.selected);
       const params = {
-        select,
+        category: category.category,
         sort,
       };
       dispatch(setFilters({ ...params } as unknown as FilterSliceState));
@@ -59,10 +61,13 @@ const Home: React.FC = () => {
         category,
         selected,
       });
-      navigate(`?${queryString}`);
+      console.log(category);
+      navigate(`/?${queryString}`);
     }
+
     isMounted.current = true;
   }, [category, selected]);
+
   return (
     <>
       <div className="menu">
