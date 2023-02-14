@@ -6,7 +6,7 @@ import { Food } from "../../redux/slices/foodSlice";
 type FoodProps = {
   img: string;
   name: string;
-  price: number;
+  price: number[];
   rating: number;
   size: number[];
   text: string;
@@ -22,13 +22,13 @@ const FoodBlock: React.FC<FoodProps> = ({
   const [foodCount, setCount] = React.useState(0);
   const [sizeFood, setSize] = React.useState(0);
   const dispatch = useDispatch();
-  const typeSize = ["джуниор", "стандарт"];
+  const typeSize = ["стандарт", "max"];
   const onAdd = () => {
     const item: Food = {
       img,
       name,
       text,
-      price,
+      price: price[sizeFood],
       rating,
       size,
       count: 0,
@@ -48,25 +48,29 @@ const FoodBlock: React.FC<FoodProps> = ({
       <div className="container_text">
         <p>{text}</p>
       </div>
-      <div className="option_size">
-        <h3>Размер порции</h3>
-        <div className="portion">
-          <ul>
-            {size.map((index) => (
-              <li
-                key={index}
-                onClick={() => setSize(index)}
-                className={sizeFood === index ? "active_size" : " "}
-              >
-                {typeSize[index]}
-              </li>
-            ))}
-          </ul>
+      {size.length > 1 ? (
+        <div className="option_size">
+          <h3>Размер порции</h3>
+          <div className="portion">
+            <ul>
+              {size.map((index) => (
+                <li
+                  key={index}
+                  onClick={() => setSize(index)}
+                  className={sizeFood === index ? "active_size" : " "}
+                >
+                  {typeSize[index]}
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
-      </div>
+      ) : (
+        " "
+      )}
       <div className="price_cart">
         <div>
-          <p>{price} ₽</p>
+          <p>{price[sizeFood]} ₽</p>
         </div>
         <button onClick={onAdd}>
           Добавить

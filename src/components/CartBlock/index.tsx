@@ -43,8 +43,8 @@ const CartBlock = () => {
         <span onClick={onClickClear}>очистить корзину</span>
       </div>
       <div className={style.itemBlock}>
-        {items.map((item: any) => (
-          <div className={style.itemCart}>
+        {items.map((item: any, index: any) => (
+          <div className={style.itemCart} key={index}>
             <img src={item.img} />
             <div className={style.itemName}>
               <h2>{item.name}</h2>

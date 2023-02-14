@@ -10,7 +10,6 @@ import Search, { arr } from "../components/Search";
 import FoodBlock from "../components/FoodBlock";
 import Skeleton from "../components/FoodBlock/Skeleton";
 import { RootState, useAppDispatch } from "../redux/store";
-import QueryString from "qs";
 
 const Home: React.FC = () => {
   const navigate = useNavigate();
@@ -24,7 +23,6 @@ const Home: React.FC = () => {
   const selected = useSelector(
     (state: RootState) => state.categorySlice.sort.sortSearch
   );
-  ///const sort = useSelector((state: RootState) => state.categorySlice.sort);
 
   const getFood = async () => {
     dispatch(

@@ -25,7 +25,8 @@ export const cartSlice = createSlice({
   reducers: {
     addProduct(state, action: PayloadAction<CartItem>) {
       const findProduct = state.items.find(
-        (obj) => obj.img === action.payload.img
+        (obj) =>
+          obj.img === action.payload.img && obj.type === action.payload.type
       );
       if (findProduct) {
         findProduct.count++;
@@ -38,7 +39,8 @@ export const cartSlice = createSlice({
     },
     minusProduct(state, action: PayloadAction<CartItem>) {
       const findProduct = state.items.find(
-        (obj) => obj.img === action.payload.img
+        (obj) =>
+          obj.img === action.payload.img && obj.type === action.payload.type
       );
       if (findProduct) {
         findProduct.count--;
@@ -47,7 +49,11 @@ export const cartSlice = createSlice({
       console.log(findProduct);
     },
     removeProduct(state, action: PayloadAction<CartItem>) {
-      state.items = state.items.filter((obj) => obj.img !== action.payload.img);
+      const findProduct = state.items.find(
+        (obj) =>
+          obj.img === action.payload.img && obj.type === action.payload.type
+      );
+      state.items = state.items.filter((obj) => obj !== findProduct);
       state.totalPrice =
         state.totalPrice - action.payload.price * action.payload.count;
     },
