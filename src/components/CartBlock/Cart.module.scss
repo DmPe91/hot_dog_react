@@ -5,9 +5,18 @@
   .cart_head {
     display: flex;
     justify-content: space-between;
+    h1 {
+      border-bottom: 2px solid black;
+    }
     span {
       line-height: 90px;
       color: gray;
+      font-size: 20px;
+    }
+    span:hover {
+      cursor: pointer;
+      color: black;
+      font-weight: bold;
     }
   }
   .itemBlock {
@@ -25,14 +34,22 @@
         h2 {
           margin: 0;
         }
+        span {
+          font-size: 20px;
+          font-weight: bold;
+          border-bottom: 2px solid black;
+        }
       }
       .itemCount {
         flex-basis: 40%;
         text-align: center;
         button {
-          font-size: 30px;
+          font-size: 20px;
           border: none;
           background: white;
+        }
+        button:hover {
+          cursor: pointer;
         }
         span {
           font-size: 30px;
