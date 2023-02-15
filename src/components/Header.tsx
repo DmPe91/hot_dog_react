@@ -5,6 +5,13 @@ import { Link, useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { RootState } from "../redux/store";
 import { calcTotalCounts } from "../utils/calcTotalCount";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  solid,
+  regular,
+  brands,
+  icon,
+} from "@fortawesome/fontawesome-svg-core/import.macro";
 
 function Header() {
   const { items, totalPrice } = useSelector(
@@ -37,15 +44,34 @@ function Header() {
           <p>Лучшие хот доги и шаурма</p>
         </div>
       </div>
-      {location.pathname !== "/cart" && (
-        <div className="header_cart">
-          <Link to="/cart" className="button button--cart">
-            <span>{totalPrice} ₽</span>
-            <i className="fa fa-shopping-cart" aria-hidden="true"></i>
-            <span>{calcTotalCounts(items)}</span>
-          </Link>
+      <div>
+        {location.pathname !== "/cart" && (
+          <div className="header_cart">
+            <Link to="/cart" className="button button--cart">
+              <span>{totalPrice} ₽</span>
+              <FontAwesomeIcon icon={solid("cart-shopping")} />
+              <span>{calcTotalCounts(items)}</span>
+            </Link>
+          </div>
+        )}
+        <div className="item-media">
+          <span>
+            <a href="">
+              <FontAwesomeIcon icon={brands("vk")} />
+            </a>
+          </span>
+          <span>
+            <a href="">
+              <FontAwesomeIcon icon={brands("twitter")} />
+            </a>
+          </span>
+          <span>
+            <a href="">
+              <FontAwesomeIcon icon={brands("instagram")} />
+            </a>
+          </span>
         </div>
-      )}
+      </div>
     </div>
   );
 }

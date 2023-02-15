@@ -11,6 +11,13 @@ import { RootState } from "../../redux/store";
 import { calcTotalCounts } from "../../utils/calcTotalCount";
 import EmptyCartBlock from "../EmptyCartBlock";
 import style from "./Cart.module.scss";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  solid,
+  regular,
+  brands,
+  icon,
+} from "@fortawesome/fontawesome-svg-core/import.macro";
 const CartBlock = () => {
   const dispatch = useDispatch();
   const { items, totalPrice } = useSelector(
@@ -55,16 +62,20 @@ const CartBlock = () => {
                 onClick={() => onClickMinus(item)}
                 disabled={item.count === 1}
               >
-                -
+                <FontAwesomeIcon icon={solid("minus")} />
               </button>
               <span>{item.count}</span>
-              <button onClick={() => onClickPlus(item)}>+</button>
+              <button onClick={() => onClickPlus(item)}>
+                <FontAwesomeIcon icon={solid("plus")} />
+              </button>
             </div>
             <div className={style.itemPrice}>
               <span>{item.price * item.count} Р</span>
             </div>
             <div>
-              <span onClick={() => onClickRemove(item)}>X</span>
+              <span onClick={() => onClickRemove(item)}>
+                <FontAwesomeIcon icon={solid("circle-xmark")} />
+              </span>
             </div>
           </div>
         ))}

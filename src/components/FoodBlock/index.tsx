@@ -3,6 +3,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { addProduct, CartItem } from "../../redux/slices/cartSlice";
 import { Food } from "../../redux/slices/foodSlice";
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  solid,
+  regular,
+  brands,
+  icon,
+} from "@fortawesome/fontawesome-svg-core/import.macro";
+
 type FoodProps = {
   img: string;
   name: string;
@@ -73,7 +81,8 @@ const FoodBlock: React.FC<FoodProps> = ({
           <p>{price[sizeFood]} ₽</p>
         </div>
         <button onClick={onAdd}>
-          Добавить
+          <FontAwesomeIcon icon={solid("plus")} />
+          <span>Добавить</span>
           <span>{foodCount > 0 ? foodCount : ""}</span>
         </button>
       </div>
