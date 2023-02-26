@@ -8,7 +8,7 @@ import {
   CartItem,
 } from "../../redux/slices/cartSlice";
 import { RootState } from "../../redux/store";
-import { calcTotalCounts } from "../../utils/calcTotalCount";
+import { calcTotalCounts } from "../../utils/calcTotalCounts";
 import EmptyCartBlock from "../EmptyCartBlock";
 import style from "./Cart.module.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -18,6 +18,7 @@ import {
   brands,
   icon,
 } from "@fortawesome/fontawesome-svg-core/import.macro";
+import { Link } from "react-router-dom";
 const CartBlock = () => {
   const dispatch = useDispatch();
   const { items, totalPrice } = useSelector(
@@ -72,7 +73,7 @@ const CartBlock = () => {
             <div className={style.itemPrice}>
               <span>{item.price * item.count} Р</span>
             </div>
-            <div>
+            <div className={style.remove_item}>
               <span onClick={() => onClickRemove(item)}>
                 <FontAwesomeIcon icon={solid("circle-xmark")} />
               </span>
@@ -83,7 +84,9 @@ const CartBlock = () => {
       <div className={style.info_product}>
         <div>
           <p>
-            Всего заказано <span>{calcTotalCounts(items)} шт</span>
+            Всего заказано
+            <span>{calcTotalCounts(items)} </span>
+            шт
           </p>
         </div>
         <div>
@@ -93,7 +96,9 @@ const CartBlock = () => {
         </div>
       </div>
       <div className={style.cart_button}>
-        <button className={style.button_return}>Вернуться назад</button>
+        <Link to="/">
+          <button className={style.button_return}>Вернуться назад</button>
+        </Link>
         <button className={style.button_pay}>Оплатить сейчас</button>
       </div>
     </div>

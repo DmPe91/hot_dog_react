@@ -8,7 +8,9 @@ const EmptyCartBlock: React.FC = () => {
     <div>
       <h1 className={style.container}>Корзина пуста</h1>
       <Link to="/">
-        <span>Вернутся назад</span>
+        <div>
+          <span>Вернутся назад</span>
+        </div>
       </Link>
     </div>
   );

@@ -18,6 +18,7 @@ export const fetchFood = createAsyncThunk<Food[], FetchFoodArgs>(
   }
 );
 export type Food = {
+  category: number;
   img: string;
   name: string;
   price: number;

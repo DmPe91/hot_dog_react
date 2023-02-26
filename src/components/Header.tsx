@@ -4,7 +4,7 @@ import "../style.scss";
 import { Link, useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { RootState } from "../redux/store";
-import { calcTotalCounts } from "../utils/calcTotalCount";
+import { calcTotalCounts } from "../utils/calcTotalCounts";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   solid,
@@ -33,44 +33,47 @@ function Header() {
 
   return (
     <div className="header">
-      <div className="header_logo">
-        <Link to="/">
+      <Link to="/" className="link">
+        <div className="header_logo">
           <div>
             <img src="assets/image/logo/logo_shau.png" />
           </div>
-        </Link>
-        <div>
+        </div>
+        <div className="header_tittle">
           <h1>SHAU & HOT DOGS</h1>
           <p>Лучшие хот доги и шаурма</p>
         </div>
-      </div>
-      <div>
-        {location.pathname !== "/cart" && (
-          <div className="header_cart">
-            <Link to="/cart" className="button button--cart">
-              <span>{totalPrice} ₽</span>
-              <FontAwesomeIcon icon={solid("cart-shopping")} />
-              <span>{calcTotalCounts(items)}</span>
-            </Link>
-          </div>
-        )}
+      </Link>
+      <div className="container_cart">
         <div className="item-media">
           <span>
-            <a href="">
+            <a href="https://vk.com">
               <FontAwesomeIcon icon={brands("vk")} />
             </a>
           </span>
           <span>
-            <a href="">
+            <a href="https://twitter.com">
               <FontAwesomeIcon icon={brands("twitter")} />
             </a>
           </span>
           <span>
-            <a href="">
+            <a href="https://www.instagram.com/">
               <FontAwesomeIcon icon={brands("instagram")} />
             </a>
           </span>
         </div>
+        {location.pathname !== "/cart" && (
+          <div className="header_cart">
+            <Link to="/cart" className="button button--cart">
+              <span>{totalPrice} ₽</span> |
+              <FontAwesomeIcon
+                icon={solid("cart-shopping")}
+                className="cart_shopping"
+              />
+              <span>{calcTotalCounts(items)}</span>
+            </Link>
+          </div>
+        )}
       </div>
     </div>
   );

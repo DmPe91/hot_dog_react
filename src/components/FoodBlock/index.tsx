@@ -12,6 +12,7 @@ import {
 } from "@fortawesome/fontawesome-svg-core/import.macro";
 
 type FoodProps = {
+  category: number;
   img: string;
   name: string;
   price: number[];
@@ -20,6 +21,7 @@ type FoodProps = {
   text: string;
 };
 const FoodBlock: React.FC<FoodProps> = ({
+  category,
   img,
   name,
   text,
@@ -33,6 +35,7 @@ const FoodBlock: React.FC<FoodProps> = ({
   const typeSize = ["стандарт", "max"];
   const onAdd = () => {
     const item: Food = {
+      category,
       img,
       name,
       text,
@@ -53,12 +56,12 @@ const FoodBlock: React.FC<FoodProps> = ({
       <div>
         <h2>{name}</h2>
       </div>
-      <div className="container_text">
+      <div className={category == 1 ? "container_text min" : "container_text"}>
         <p>{text}</p>
       </div>
       {size.length > 1 ? (
         <div className="option_size">
-          <h3>Размер порции</h3>
+          <h3>Размер порции:</h3>
           <div className="portion">
             <ul>
               {size.map((index) => (
@@ -67,6 +70,11 @@ const FoodBlock: React.FC<FoodProps> = ({
                   onClick={() => setSize(index)}
                   className={sizeFood === index ? "active_size" : " "}
                 >
+                  {sizeFood === index ? (
+                    <FontAwesomeIcon icon={solid("check")} className="check" />
+                  ) : (
+                    ""
+                  )}
                   {typeSize[index]}
                 </li>
               ))}
@@ -81,7 +89,6 @@ const FoodBlock: React.FC<FoodProps> = ({
           <p>{price[sizeFood]} ₽</p>
         </div>
         <button onClick={onAdd}>
-          <FontAwesomeIcon icon={solid("plus")} />
           <span>Добавить</span>
           <span>{foodCount > 0 ? foodCount : ""}</span>
         </button>
