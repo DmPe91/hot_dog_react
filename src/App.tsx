@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Routes, Route } from "react-router-dom";
+import { HashRouter, Routes, Route } from "react-router-dom";
 import "./scss/style.scss";
 import Header from "./components/Header";
 import Home from "./pages/Home";
@@ -11,18 +11,20 @@ function App() {
   return (
     <div className="wrapper">
       <Header />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route
-          path="/cart"
-          element={
-            <React.Suspense fallback={<div>Загрузка корзины...</div>}>
-              <Cart />
-            </React.Suspense>
-          }
-        />
-        <Route path="*" element={<EmptyCart />} />
-      </Routes>
+      <HashRouter basename="/">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route
+            path="/cart"
+            element={
+              <React.Suspense fallback={<div>Загрузка корзины...</div>}>
+                <Cart />
+              </React.Suspense>
+            }
+          />
+          <Route path="*" element={<EmptyCart />} />
+        </Routes>
+      </HashRouter>
     </div>
   );
 }

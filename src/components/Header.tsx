@@ -62,7 +62,7 @@ function Header() {
             </a>
           </span>
         </div>
-        {location.pathname !== "/cart" && (
+        {location.pathname == "/" ? (
           <div className="header_cart">
             <Link to="/cart" className="button button--cart">
               <span>{totalPrice} ₽</span> |
@@ -73,6 +73,8 @@ function Header() {
               <span>{calcTotalCounts(items)}</span>
             </Link>
           </div>
+        ) : (
+          ""
         )}
       </div>
     </div>
