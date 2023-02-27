@@ -58,8 +58,9 @@ const Home: React.FC = () => {
       const queryString = qs.stringify({
         category,
         selected,
+        skipNulls: true,
       });
-      console.log(category);
+
       navigate(`/?${queryString}`);
     }
 
