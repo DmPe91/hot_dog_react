@@ -1,7 +1,7 @@
 {
   "name": "my-app",
   "version": "0.1.0",
-  "homepage": "https://DmPe91.github.io/hot_dog_react",
+  "homepage": "https://dmpe91.github.io/hot_dog_react",
   "private": true,
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.3.0",
