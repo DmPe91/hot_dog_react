@@ -13,16 +13,16 @@ function App() {
       <Header />
      
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/#/" element={<Home />} />
         <Route
-          path="/cart"
+          path="/#/cart"
           element={
             <React.Suspense fallback={<div>Загрузка корзины...</div>}>
               <Cart />
             </React.Suspense>
           }
         />
-        <Route path="*" element={<EmptyCart />} />
+        <Route path="/#*" element={<EmptyCart />} />
       </Routes>
        
     </div>
