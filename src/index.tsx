@@ -12,7 +12,7 @@ const rootElem = document.getElementById("root");
 if (rootElem) {
   const root = ReactDOM.createRoot(rootElem);
   root.render(
-    <HashRouter>
+    <BrowserRouter>
       <Provider store={store}>
         <App />
       </Provider>
