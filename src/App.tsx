@@ -11,7 +11,7 @@ function App() {
   return (
     <div className="wrapper">
       <Header />
-      <HashRouter basename="/">
+     
       <Routes>
         <Route path="/" element={<Home />} />
         <Route
@@ -24,7 +24,7 @@ function App() {
         />
         <Route path="*" element={<EmptyCart />} />
       </Routes>
-        </HashRouter>
+       
     </div>
   );
 }
