@@ -5,7 +5,7 @@ import "./scss/style.scss";
 import Header from "./components/Header";
 import Home from "./pages/Home";
 import EmptyCart from "./pages/EmptyCart";
-//import Cart from "./pages/Cart";
+
 const Cart = React.lazy(() => import("./pages/Cart"));
 function App() {
   return (
@@ -13,16 +13,16 @@ function App() {
       <Header />
      
       <Routes>
-        <Route path="/#/" element={<Home />} />
+        <Route path="/" element={<Home />} />
         <Route
-          path="/#/cart"
+          path="/cart"
           element={
             <React.Suspense fallback={<div>Загрузка корзины...</div>}>
               <Cart />
             </React.Suspense>
           }
         />
-        <Route path="/#*" element={<EmptyCart />} />
+        <Route path="*" element={<EmptyCart />} />
       </Routes>
        
     </div>
