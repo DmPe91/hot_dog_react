@@ -13,7 +13,7 @@ if (rootElem) {
   const root = ReactDOM.createRoot(rootElem);
   root.render(
     <Provider store={store}>
-    <HashRouter basename='/'>
+    <HashRouter basename='/#/'>
       <App />
     </HashRouter>  
      </Provider>
