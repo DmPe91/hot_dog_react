@@ -36,7 +36,7 @@ function Header() {
       <Link to="/" className="link">
         <div className="header_logo">
           <div>
-            <img src="https://dmpe91.github.io/hot_dog_react/assets/image/logo/logo_shau.png" />
+            <img src="https://dmpe91.github.io/hot_dog_react/public/assets/image/logo/logo_shau.png" />
           </div>
         </div>
         <div className="header_tittle">

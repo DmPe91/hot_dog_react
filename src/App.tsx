@@ -12,7 +12,7 @@ function App() {
     <div className="wrapper">
       <Header />
       <Routes>
-        <Route exact path="/" element={<Home />} />
+        <Route  path="/" element={<Home />} />
         <Route
           path="/cart"
           element={
