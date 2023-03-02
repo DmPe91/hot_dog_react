@@ -14,6 +14,16 @@ body {
         width: 65%;
       }
     }
+    .container_food {
+      .food_block {
+        width: 90%;
+        .container_image {
+          img {
+            height: 150px;
+          }
+        }
+      }
+    }
   }
 }
 @media screen and (max-width: 426px) {
@@ -25,6 +35,8 @@ body {
         width: 100%;
       }
       .container_cart {
+        margin-bottom: 5%;
+        margin-top: 5%;
         width: 100%;
         flex-direction: row;
         float: none;
@@ -52,6 +64,38 @@ body {
       .food_block {
         margin-left: auto;
         margin-right: auto;
+        .container_image {
+          img {
+            height: 200px;
+          }
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width: 685px) {
+  body {
+    width: fit-content;
+    .header {
+      display: block;
+      .link {
+        width: 100%;
+      }
+      .container_cart {
+        margin-bottom: 5%;
+        margin-top: 5%;
+        width: 100%;
+        flex-direction: row;
+        float: none;
+        justify-content: space-between;
+        .header_cart {
+          align-self: flex-start;
+          margin-top: 5px;
+          margin-right: 0;
+          a {
+            padding: 25px 40px;
+          }
+        }
       }
     }
   }
@@ -60,9 +104,26 @@ body {
   body {
     .container_food {
       grid-template-columns: 1fr 1fr;
+      .food_block {
+        width: 70%;
+        .container_image {
+          img {
+            height: 200px;
+          }
+        }
+      }
+    }
+  }
+}
+@media screen and (min-width: 1779px) {
+  .container_cart {
+    margin-top: 2%;
+  }
+  .container_food {
+    .food_block {
       .container_image {
         img {
-          height: 100px;
+          height: 300px;
         }
       }
     }
