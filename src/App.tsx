@@ -5,14 +5,14 @@ import "./scss/style.scss";
 import Header from "./components/Header";
 import Home from "./pages/Home";
 import EmptyCart from "./pages/EmptyCart";
-//import Cart from "./pages/Cart";
+
 const Cart = React.lazy(() => import("./pages/Cart"));
 function App() {
   return (
     <div className="wrapper">
       <Header />
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route exact path="/" element={<Home />} />
         <Route
           path="/cart"
           element={
