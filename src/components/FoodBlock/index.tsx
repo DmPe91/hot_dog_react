@@ -32,7 +32,7 @@ const FoodBlock: React.FC<FoodProps> = ({
   const [foodCount, setCount] = React.useState(0);
   const [sizeFood, setSize] = React.useState(0);
   const dispatch = useDispatch();
-  const typeSize = ["стандарт", "max"];
+  const typeSize = ["стандартная", "большая"];
   const onAdd = () => {
     const item: Food = {
       category,
@@ -88,10 +88,19 @@ const FoodBlock: React.FC<FoodProps> = ({
         <div>
           <p>{price[sizeFood]} ₽</p>
         </div>
-        <button onClick={onAdd}>
-          <span>Добавить</span>
-          <span>{foodCount > 0 ? foodCount : ""}</span>
-        </button>
+        {foodCount > 0 ? (
+          <div>
+            <button onClick={onAdd}>
+              <span>
+                {foodCount} шт <FontAwesomeIcon icon={solid("plus")} />
+              </span>
+            </button>
+          </div>
+        ) : (
+          <button onClick={onAdd}>
+            <span>Добавить</span>
+          </button>
+        )}
       </div>
     </div>
   );
